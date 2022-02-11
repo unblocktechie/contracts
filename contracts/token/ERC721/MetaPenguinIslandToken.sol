@@ -53,7 +53,7 @@ contract MetaPenguinIslandToken is ERC721X, Ownable {
     root = _newRoot;
   }
 
-  function adminBuy(address _to, bool _amount) public {
+  function adminBuy(address _to, bool _amount) public onlyOwner {
     uint256 n = !_amount ? 1 : 2;
 
     adminMintCount += n;
