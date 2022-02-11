@@ -1,0 +1,27 @@
+{
+  "trailingComma": "all",
+  "semi": false,
+  "endOfLine": "lf",
+  "singleQuote": true,
+  "tabWidth": 2,
+  "useTabs": false,
+  "overrides": [
+    {
+      "files": [".prettierrc", ".lintstagedrc"],
+      "options": {
+        "parser": "json"
+      }
+    },
+    {
+      "files": "*.sol",
+      "options": {
+        "printWidth": 120,
+        "tabWidth": 2,
+        "useTabs": false,
+        "singleQuote": false,
+        "bracketSpacing": false,
+        "explicitTypes": "always"
+      }
+    }
+  ]
+}
