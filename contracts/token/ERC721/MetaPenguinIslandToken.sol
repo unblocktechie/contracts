@@ -12,6 +12,7 @@ contract MetaPenguinIslandToken is ERC721X, Ownable {
   uint256 public immutable price = 24000000000000000000; // 0.24 Ether
   uint256 public immutable maxTotalSupply = 8888;
   uint256 public immutable maxAdminMint = 100;
+  uint256 public adminMintCount = 0;
 
   mapping(address => uint256) private mints;
 
@@ -55,7 +56,9 @@ contract MetaPenguinIslandToken is ERC721X, Ownable {
   function adminBuy(address _to, bool _amount) public {
     uint256 n = !_amount ? 1 : 2;
 
-    require(nextId <= maxTotalSupply, "not enough tokens");
+    adminMintCount++;
+
+    require(nextId <= maxTotalSupply && adminMintCount < 100, "not enough tokens");
 
     _mint(_to, _amount);
   }
