@@ -58,7 +58,7 @@ contract MetaPenguinIslandToken is ERC721X, Ownable {
 
     adminMintCount += n;
 
-    require(nextId <= maxTotalSupply && adminMintCount <= 100, "not enough tokens");
+    require(nextId <= maxTotalSupply && adminMintCount <= maxAdminMint, "not enough tokens");
 
     _mint(_to, _amount);
   }
