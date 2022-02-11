@@ -10,10 +10,8 @@ contract MetaPenguinIslandToken is ERC721X, Ownable {
   using MerkleProof for bytes32[];
 
   uint256 public immutable price = 24000000000000000000; // 0.24 Ether
-
-  uint256 public supplyLeft = 8788;
-
-  uint256 public adminSupplyLeft = 100;
+  uint256 public immutable maxTotalSupply = 8888;
+  uint256 public immutable maxAdminMint = 100;
 
   mapping(address => uint256) private mints;
 
@@ -28,7 +26,7 @@ contract MetaPenguinIslandToken is ERC721X, Ownable {
 
     require(msg.sender == tx.origin, "mint from contract not allowed");
     require(msg.value == price * n, "incorrect price");
-    require(supplyLeft >= n, "not enough tokens");
+    require(nextId <= maxTotalSupply - maxAdminMint, "not enough tokens");
     require(mints[msg.sender] + n <= 2, "mint limit reached");
 
     bytes32 leaf = keccak256(abi.encodePacked(msg.sender, _startTime));
@@ -38,8 +36,6 @@ contract MetaPenguinIslandToken is ERC721X, Ownable {
     require(_startTime <= block.timestamp, "too early");
 
     mints[msg.sender] += n;
-
-    supplyLeft -= n;
 
     _mint(msg.sender, _amount);
   }
@@ -59,9 +55,7 @@ contract MetaPenguinIslandToken is ERC721X, Ownable {
   function adminBuy(address _to, bool _amount) public {
     uint256 n = !_amount ? 1 : 2;
 
-    require(adminSupplyLeft >= n, "not enough tokens");
-
-    adminSupplyLeft -= n;
+    require(nextId <= maxTotalSupply, "not enough tokens");
 
     _mint(_to, _amount);
   }
