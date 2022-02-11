@@ -26,7 +26,7 @@ contract MetaPenguinIslandToken is ERC721X, Ownable {
     uint256 n = !_amount ? 1 : 2;
 
     require(msg.sender == tx.origin, "mint from contract not allowed");
-    require(msg.value == price * n, "incorrect price");
+    require(msg.value >= price * n, "incorrect price");
     require(nextId <= maxTotalSupply - maxAdminMint, "not enough tokens");
     require(mints[msg.sender] + n <= 2, "mint limit reached");
 
