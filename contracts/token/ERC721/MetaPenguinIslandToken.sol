@@ -9,7 +9,7 @@ contract MetaPenguinIslandToken is ERC721X, Ownable {
   // Use OZ MerkleProof Library to verify Merkle proofs
   using MerkleProof for bytes32[];
 
-  uint256 public immutable price = 24000000000000000000; // 0.24 Ether
+  uint256 public immutable price = 240000000000000000; // 0.24 Ether
   uint256 public immutable maxTotalSupply = 8888;
   uint256 public immutable maxAdminMint = 100;
   uint256 public adminMintCount = 0;
