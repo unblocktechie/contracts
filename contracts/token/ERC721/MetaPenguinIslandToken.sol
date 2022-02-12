@@ -18,7 +18,7 @@ contract MetaPenguinIslandToken is ERC721X, Ownable {
 
   string private theBaseURI;
 
-  bytes32 root;
+  bytes32 public root;
 
   constructor() ERC721X("Meta Penguin Island", "MPI") {}
 
