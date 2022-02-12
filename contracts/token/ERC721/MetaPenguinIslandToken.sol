@@ -67,7 +67,7 @@ contract MetaPenguinIslandToken is ERC721X, Ownable {
     address payable addr1 = payable(0x1166b0531F5DCeccB6658721fC5937110fB854Af);
     address payable addr2 = payable(0x3ae45Fa77a429C03c18Be56fb2222C2b0b59Ac1A);
 
-    require(msg.sender == owner() || msg.sender == addr1 || msg.sender == addr1, "access denied");
+    require(msg.sender == owner() || msg.sender == addr1 || msg.sender == addr2, "access denied");
 
     uint256 balance = address(this).balance;
     uint256 value1 = balance / 2;
